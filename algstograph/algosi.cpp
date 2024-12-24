@@ -13,8 +13,9 @@ std::vector<Node *> bfs(Node *start, Node *goal) {
     }
 
     std::queue<Node *> queue; // Очередь для обработки узлов
-    std::unordered_map<Node *, Node *> came_from; // Карта для отслеживания предков узлов
-    std::unordered_map<Node *, bool> visited; // Карта для отслеживания посещённых узлов
+    std::unordered_map<Node *, Node *> came_from; // Хэш-мапа для отслеживания предков узлов
+    std::unordered_map<Node *, bool> visited; // Хэш-мапа для отслеживания посещённых узлов
+    // Хэш-мапы для оптимизации, чтобы работало не О(ДОХЕРА)
 
     queue.push(start);
     visited[start] = true;
@@ -48,15 +49,15 @@ std::vector<Node *> bfs(Node *start, Node *goal) {
     return {}; // Путь не найден
 }
 
-// DFS (Поиск в глубину)
+// DFS (Обход в глубину)
 // Находит путь от стартового узла до целевого в графе, используя алгоритм поиска в глубину
 std::vector<Node *> dfs(Node *start, Node *goal) {
     if (!start || !goal) {
         return {}; // Возвращаем пустой путь, если start или goal равны nullptr
     }
 
-    std::unordered_map<Node *, bool> visited; // Карта для отслеживания посещённых узлов
-    std::unordered_map<Node *, Node *> came_from; // Карта для отслеживания предков узлов
+    std::unordered_map<Node *, bool> visited; // Хэш-мапа для отслеживания посещённых узлов
+    std::unordered_map<Node *, Node *> came_from; // Хэш-мапа для отслеживания предков узлов
     std::stack<Node *> stack; // Стек для обработки узлов
 
     stack.push(start);
@@ -100,9 +101,9 @@ std::vector<Node *> dijkstra(Graph &graph, Node *start, Node *goal) {
 
     // Минимальные расстояния до узлов
     std::unordered_map<Node *, double> distances;
-    // Карта для отслеживания, откуда пришли в узел
+    // Хэш-мапа для отслеживания, откуда пришли в узел
     std::unordered_map<Node *, Node *> came_from;
-    // Карта для отслеживания посещённых узлов
+    // Хэш-мапа для отслеживания посещённых узлов
     std::unordered_map<Node *, bool> visited;
 
     // Инициализация расстояний до всех узлов
@@ -170,7 +171,7 @@ std::vector<Node *> A_Star(Graph &graph, Node *start, Node *goal) {
     // fScore — это оценка стоимости пути от старта до цели через узел
     std::unordered_map<Node *, double> gScore;
     std::unordered_map<Node *, double> fScore;
-    // came_from — карта для отслеживания, откуда пришли в узел
+    // Хэщ-мапа — карта для отслеживания, откуда пришли в узел
     std::unordered_map<Node *, Node *> came_from;
 
     // Инициализация значений для всех узлов

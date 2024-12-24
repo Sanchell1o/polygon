@@ -5,7 +5,7 @@
 #include <vector>
 #include <queue>
 
-// Функция для выполнения обхода в ширину (BFS)
+// Функция для выполнения поиска в ширину (BFS)
 // Находит кратчайший путь от узла start до узла goal в графе, если он существует
 std::vector<Node *> bfs(Node *start, Node *goal);
 
