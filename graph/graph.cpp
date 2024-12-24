@@ -123,7 +123,6 @@ void Graph::readFromFile(const std::string &filename) {
 }
 
 
-
 // Вывод пути, представленного вектором узлов
 void Graph::printPath(const std::vector<Node *> &path) const {
     if (path.empty()) {  // Если путь пуст, выводим сообщение об ошибке

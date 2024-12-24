@@ -23,7 +23,7 @@ int main() {
         return 1;  // Завершаем программу с ошибкой
     }
 
-    // BFS (Обход в ширину)
+    // BFS (Поиск в ширину)
     std::cout << "\nResult of BFS:" << std::endl;
     auto start_time = std::chrono::high_resolution_clock::now();  // Записываем время начала
     const std::vector<Node *> bfs_path = bfs(start_node, goal_node);  // Запускаем алгоритм BFS для поиска пути
