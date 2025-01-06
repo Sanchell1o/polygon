@@ -1,29 +1,29 @@
 import unittest
-
 import numpy as np
+from typing import Union, Sequence
 
 
-def longest_even_sequence(array):
+def create_even_mask(array: Union[np.ndarray, Sequence[int]]) -> bool:
+    """
+    Создает булеву маску для четных чисел в массиве.
+
+    """
+    return np.asarray(array) % 2 == 0
+
+
+def longest_even_sequence(array: Union[np.ndarray, Sequence[int]]) -> int:
     """
     Находит длину самой длинной последовательности чётных чисел в массиве.
-
-    Args:
-        array: Итерируемый объект (список, преобразованный в numpy-array)
-
-    Returns:
-        int: Длина самой длинной последовательности чётных чисел в массиве.
-             Возвращает 0, если в массиве нет чётных чисел.
     """
-
     # Преобразуем входной массив в numpy array
-    array = np.array(array)
+    array = np.asarray(array)
 
     # Если массив пустой, то возвращаем 0.
     if array.size == 0:
         return 0
 
     # Создаем boolean маску, где True означает, что число в массиве чётное, иначе False.
-    even_mask = array % 2 == 0
+    even_mask = create_even_mask(array)
 
     # Если в массиве нет ни одного чётного числа, возвращаем 0.
     if not np.any(even_mask):
@@ -51,7 +51,6 @@ def longest_even_sequence(array):
 
 
 class TestLongestEvenSequence(unittest.TestCase):
-
     def test_empty_array(self):
         # Тест с пустым массивом.
         self.assertEqual(longest_even_sequence(np.array([])), 0)
@@ -91,7 +90,7 @@ class TestLongestEvenSequence(unittest.TestCase):
         self.assertEqual(longest_even_sequence(np.array([1, 3, 2, 4])), 2)
 
     def test_multiple_even_sequences(
-        self,
+            self,
     ):  # Тест с массивом, где есть несколько последовательностей чётных чисел.
         self.assertEqual(longest_even_sequence(np.array([1, 2, 4, 1, 2, 1, 2, 4, 6])), 3)
 
